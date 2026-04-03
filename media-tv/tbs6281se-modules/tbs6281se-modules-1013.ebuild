@@ -32,7 +32,9 @@ src_compile() {
 		tbsecp3=::pci/tbsecp3
 		si2157=::tuners
 	)
-	local modargs=( KERNEL_BUILD="${KV_OUT_DIR}" )
+	local modargs=(
+		kernelver="${KV_FULL}"
+	)
 
 	linux-mod-r1_src_compile
 }
