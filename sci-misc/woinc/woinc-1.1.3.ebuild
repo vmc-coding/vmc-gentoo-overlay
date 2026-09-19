@@ -12,7 +12,7 @@ SRC_URI="https://github.com/vmc-coding/woinc/archive/refs/tags/v${PV}.tar.gz -> 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+cli minimal qt5 qt6 test"
+IUSE="+cli extra minimal qt5 qt6 test"
 REQUIRED_USE="?? ( qt5 qt6 )"
 RESTRICT="!test? ( test )"
 
@@ -40,6 +40,7 @@ src_configure() {
 		-DWOINC_BUILD_UI_CLI=$(usex cli)
 		-DWOINC_BUILD_UI_QT=$(usex qt6 yes $(usex qt5))
 		-DWOINC_EXPOSE_FULL_STRUCTURES=$(usex !minimal)
+		-DWOINC_CLI_COMMANDS=$(usex extra)
 		$(cmake_use_find_package qt5 Qt5)
 		$(cmake_use_find_package qt6 Qt6)
 	)
